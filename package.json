@@ -13,6 +13,8 @@
     "build": "tsc && cp -r src/renderer dist/",
     "start": "npm run build && electron .",
     "dev": "npm run build && electron .",
+    "dev:no-sandbox": "npm run build && electron --no-sandbox .",
+    "fix:electron-sandbox": "sudo chown root:root node_modules/electron/dist/chrome-sandbox && sudo chmod 4755 node_modules/electron/dist/chrome-sandbox",
     "typecheck": "tsc --noEmit",
     "lint": "tsc --noEmit",
     "smoke": "bash scripts/smoke-check.sh",

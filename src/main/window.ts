@@ -1,6 +1,12 @@
 import { BrowserWindow, app } from 'electron';
 import path from 'path';
-import { WHATSAPP_WEB_URL, WINDOW_DEFAULTS, APP_NAME, WHATSAPP_USER_AGENT } from '../shared/constants';
+import {
+  WHATSAPP_WEB_URL,
+  WINDOW_DEFAULTS,
+  APP_NAME,
+  DEFAULT_CHROME_USER_AGENT,
+  COMPATIBILITY_USER_AGENT,
+} from '../shared/constants';
 import { SESSION_PARTITION } from '../shared/constants';
 
 let mainWindow: BrowserWindow | null = null;
@@ -43,9 +49,9 @@ export function createMainWindow(options: MainWindowOptions = {}): BrowserWindow
     },
   });
 
-  if (options.callCompatibilityMode) {
-    mainWindow.webContents.setUserAgent(WHATSAPP_USER_AGENT);
-  }
+  mainWindow.webContents.setUserAgent(
+    options.callCompatibilityMode ? COMPATIBILITY_USER_AGENT : DEFAULT_CHROME_USER_AGENT
+  );
 
   mainWindow.loadURL(WHATSAPP_WEB_URL);
 
@@ -112,10 +118,9 @@ export function showMainWindow(): void {
 export function setCompatibilityMode(enabled: boolean): void {
   if (!mainWindow) return;
   if (enabled) {
-    mainWindow.webContents.setUserAgent(WHATSAPP_USER_AGENT);
+    mainWindow.webContents.setUserAgent(COMPATIBILITY_USER_AGENT);
   } else {
-    // Reset to default Electron user agent
-    mainWindow.webContents.setUserAgent('');
+    mainWindow.webContents.setUserAgent(DEFAULT_CHROME_USER_AGENT);
   }
 }
 
