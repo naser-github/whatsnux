@@ -14,4 +14,8 @@ contextBridge.exposeInMainWorld('__whatsnux', {
   openDownloadsFolder: () => {
     ipcRenderer.send('open-downloads-folder');
   },
+
+  getSettings: (): Promise<unknown> => {
+    return ipcRenderer.invoke('get-settings');
+  },
 });
