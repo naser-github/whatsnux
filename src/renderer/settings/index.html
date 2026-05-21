@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self';" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whatsnux - Settings</title>
+  <link rel="stylesheet" href="settings.css" />
+</head>
+<body>
+  <div class="settings-container">
+    <header class="settings-header">
+      <h1 class="settings-title">Settings</h1>
+      <span class="settings-version" id="app-version">v0.1.0</span>
+    </header>
+
+    <section class="settings-section">
+      <h2 class="section-title">General</h2>
+
+      <label class="setting-row">
+        <span class="setting-label">
+          <span class="setting-name">Launch on Login</span>
+          <span class="setting-desc">Auto-start Whatsnux when you log in</span>
+        </span>
+        <input type="checkbox" id="launch-on-login" />
+      </label>
+
+      <label class="setting-row">
+        <span class="setting-label">
+          <span class="setting-name">Start Minimized</span>
+          <span class="setting-desc">Start in the system tray</span>
+        </span>
+        <input type="checkbox" id="start-minimized" />
+      </label>
+
+      <label class="setting-row">
+        <span class="setting-label">
+          <span class="setting-name">Close to Tray</span>
+          <span class="setting-desc">Minimize to tray instead of quitting</span>
+        </span>
+        <input type="checkbox" id="close-to-tray" />
+      </label>
+    </section>
+
+    <section class="settings-section">
+      <h2 class="section-title">Appearance</h2>
+
+      <label class="setting-row">
+        <span class="setting-label">
+          <span class="setting-name">Theme</span>
+          <span class="setting-desc">Choose app appearance</span>
+        </span>
+        <select id="theme" class="setting-select">
+          <option value="system">System</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </label>
+    </section>
+
+    <section class="settings-section">
+      <h2 class="section-title">Notifications</h2>
+
+      <label class="setting-row">
+        <span class="setting-label">
+          <span class="setting-name">Native Notifications</span>
+          <span class="setting-desc">Use system notifications for messages</span>
+        </span>
+        <input type="checkbox" id="native-notifications" />
+      </label>
+    </section>
+
+    <section class="settings-section">
+      <h2 class="section-title">Calls</h2>
+
+      <label class="setting-row">
+        <span class="setting-label">
+          <span class="setting-name">Compatibility Mode</span>
+          <span class="setting-desc">Use a non-Linux user agent to expose call features</span>
+        </span>
+        <input type="checkbox" id="call-compatibility" />
+      </label>
+    </section>
+
+    <section class="settings-section">
+      <h2 class="section-title">Performance</h2>
+
+      <label class="setting-row">
+        <span class="setting-label">
+          <span class="setting-name">Hardware Acceleration</span>
+          <span class="setting-desc">Use GPU for video rendering (requires restart)</span>
+        </span>
+        <input type="checkbox" id="hw-acceleration" />
+      </label>
+    </section>
+
+    <section class="settings-section">
+      <h2 class="section-title">Storage</h2>
+
+      <div class="setting-row action-row">
+        <span class="setting-label">
+          <span class="setting-name">Clear Cache</span>
+          <span class="setting-desc">Remove temporary WhatsApp data (keeps login)</span>
+        </span>
+        <button class="setting-button" id="clear-cache">Clear</button>
+      </div>
+
+      <div class="setting-row action-row">
+        <span class="setting-label">
+          <span class="setting-name danger">Reset App Data</span>
+          <span class="setting-desc">Remove all data including login session</span>
+        </span>
+        <button class="setting-button danger" id="reset-data">Reset</button>
+      </div>
+    </section>
+
+    <footer class="settings-footer">
+      <p>Whatsnux is an unofficial Linux desktop client that uses WhatsApp Web.</p>
+    </footer>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>

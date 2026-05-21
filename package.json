@@ -1,0 +1,73 @@
+{
+  "name": "whatsnux",
+  "productName": "Whatsnux",
+  "description": "Unofficial Linux desktop client for WhatsApp Web",
+  "version": "0.1.0",
+  "author": {
+    "name": "Whatsnux Maintainers",
+    "email": "noreply@whatsnux.local"
+  },
+  "license": "MIT",
+  "main": "dist/main/app.js",
+  "scripts": {
+    "build": "tsc && cp -r src/renderer dist/",
+    "start": "npm run build && electron .",
+    "dev": "npm run build && electron .",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "smoke": "bash scripts/smoke-check.sh",
+    "clean": "rm -rf dist out release",
+    "generate-icons": "python3 scripts/generate-icons.py",
+    "pack:deb": "npm run build && electron-builder --linux deb",
+    "pack:rpm": "npm run build && electron-builder --linux rpm",
+    "pack:appimage": "npm run build && electron-builder --linux AppImage",
+    "pack:all": "npm run build && electron-builder --linux"
+  },
+  "devDependencies": {
+    "electron": "^34.0.0",
+    "electron-builder": "^25.0.0",
+    "typescript": "^5.7.0"
+  },
+  "build": {
+    "appId": "com.whatsnux.app",
+    "productName": "Whatsnux",
+    "executableName": "whatsnux",
+    "directories": {
+      "buildResources": "assets",
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "assets/**/*"
+    ],
+    "linux": {
+      "target": [
+        {
+          "target": "deb",
+          "arch": ["x64"]
+        },
+        {
+          "target": "rpm",
+          "arch": ["x64"]
+        },
+        {
+          "target": "AppImage",
+          "arch": ["x64"]
+        }
+      ],
+      "category": "Network;InstantMessaging",
+      "icon": "assets/icons",
+      "synopsis": "Unofficial Linux desktop client for WhatsApp Web",
+      "description": "Whatsnux is an unofficial Linux desktop client that uses WhatsApp Web. It provides native Linux desktop features including tray, notifications, calls, and media permissions."
+    },
+    "deb": {
+      "depends": ["libxss1", "libnss3"]
+    },
+    "rpm": {
+      "depends": ["libXScrnSaver", "nss"]
+    },
+    "extraMetadata": {
+      "description": "Unofficial Linux desktop client for WhatsApp Web"
+    }
+  }
+}
