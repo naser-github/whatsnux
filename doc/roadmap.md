@@ -1,5 +1,5 @@
 # Roadmap
-## Project: Whatsnux
+## Project: WhatsTux
 
 ### Milestone 1: App Shell
 

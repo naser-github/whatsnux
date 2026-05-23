@@ -3,7 +3,7 @@ import { contextBridge, ipcRenderer } from 'electron';
 // Bridge between settings renderer and main process.
 // Only exposes safe IPC calls — no direct Node.js access.
 
-contextBridge.exposeInMainWorld('__whatsnuxSettings', {
+contextBridge.exposeInMainWorld('__whatstuxSettings', {
   getSettings: (): Promise<unknown> => {
     return ipcRenderer.invoke('get-settings');
   },

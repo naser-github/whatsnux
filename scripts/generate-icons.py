@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate placeholder app icons for Whatsnux."""
+"""Generate placeholder app icons for WhatsTux."""
 from PIL import Image, ImageDraw
 import os
 

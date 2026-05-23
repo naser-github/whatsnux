@@ -1,4 +1,4 @@
-// Settings page — communicates with main process via __whatsnuxSettings bridge
+// Settings page — communicates with main process via __whatstuxSettings bridge
 
 interface Settings {
   closeToTray: boolean;
@@ -12,7 +12,7 @@ interface Settings {
 
 declare global {
   interface Window {
-    __whatsnuxSettings: {
+    __whatstuxSettings: {
       getSettings: () => Promise<Settings>;
       setSettings: (settings: Settings) => Promise<Settings>;
       clearCache: () => Promise<boolean>;
@@ -35,7 +35,7 @@ const elements = {
 
 async function loadSettings(): Promise<void> {
   try {
-    const settings = await window.__whatsnuxSettings.getSettings();
+    const settings = await window.__whatstuxSettings.getSettings();
 
     if (elements.launchOnLogin) elements.launchOnLogin.checked = settings.launchOnLogin;
     if (elements.startMinimized) elements.startMinimized.checked = settings.startMinimized;
@@ -61,7 +61,7 @@ async function saveSetting(): Promise<void> {
       hardwareAcceleration: elements.hwAcceleration?.checked ?? true,
     };
 
-    await window.__whatsnuxSettings.setSettings(settings);
+    await window.__whatstuxSettings.setSettings(settings);
   } catch {
     // Bridge not available
   }
@@ -91,7 +91,7 @@ function setupEventListeners(): void {
   if (elements.clearCache) {
     elements.clearCache.addEventListener('click', async () => {
       try {
-        await window.__whatsnuxSettings.clearCache();
+        await window.__whatstuxSettings.clearCache();
         elements.clearCache!.textContent = 'Done!';
         setTimeout(() => {
           elements.clearCache!.textContent = 'Clear';
@@ -108,7 +108,7 @@ function setupEventListeners(): void {
         return;
       }
       try {
-        await window.__whatsnuxSettings.resetAppData();
+        await window.__whatstuxSettings.resetAppData();
       } catch {
         elements.resetData!.textContent = 'Failed';
       }

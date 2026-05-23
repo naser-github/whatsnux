@@ -1,0 +1,4 @@
+interface:
+  display_name: "WhatsTux"
+  short_description: "Project rules for building WhatsTux."
+  default_prompt: "Use this skill when working on the WhatsTux Linux desktop client."

@@ -1,5 +1,5 @@
-export const APP_NAME = 'Whatsnux';
-export const APP_ID = 'com.whatsnux.app';
+export const APP_NAME = 'WhatsTux';
+export const APP_ID = 'com.whatstux.app';
 export const WHATSAPP_WEB_URL = 'https://web.whatsapp.com';
 export const WHATSAPP_WEB_ORIGIN = 'https://web.whatsapp.com';
 export const SESSION_PARTITION = 'persist:whatsapp';

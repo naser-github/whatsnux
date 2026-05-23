@@ -39,7 +39,7 @@ app.whenReady().then(() => {
   // Create application menu
   const appMenu = Menu.buildFromTemplate([
     {
-      label: 'Whatsnux',
+      label: 'WhatsTux',
       submenu: [
         {
           label: 'Settings',

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Whatsnux"
-  short_description: "Project rules for building Whatsnux."
-  default_prompt: "Use this skill when working on the Whatsnux Linux desktop client."

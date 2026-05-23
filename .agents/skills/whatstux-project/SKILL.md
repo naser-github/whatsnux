@@ -1,13 +1,13 @@
 ---
-name: whatsnux-project
-description: Project-specific rules for building Whatsnux, the unofficial Linux desktop client for WhatsApp Web. Use when working in this repo, editing its docs, planning agents, implementing Electron app code, reviewing security, packaging Linux builds, or testing WhatsApp Web login, tray, notifications, permissions, calls, screen share, and performance.
+name: whatstux-project
+description: Project-specific rules for building WhatsTux, the unofficial Linux desktop client for WhatsApp Web. Use when working in this repo, editing its docs, planning agents, implementing Electron app code, reviewing security, packaging Linux builds, or testing WhatsApp Web login, tray, notifications, permissions, calls, screen share, and performance.
 ---
 
-# Whatsnux Project
+# WhatsTux Project
 
 ## Core Rules
 
-- Build Whatsnux as an unofficial Linux desktop client for `https://web.whatsapp.com`.
+- Build WhatsTux as an unofficial Linux desktop client for `https://web.whatsapp.com`.
 - Use official WhatsApp Web only.
 - Do not use private WhatsApp APIs.
 - Do not reverse-engineer WhatsApp protocols.
@@ -19,11 +19,11 @@ description: Project-specific rules for building Whatsnux, the unofficial Linux 
 ## Product Identity
 
 ```text
-App name: Whatsnux
-Product name: Whatsnux
-Executable: whatsnux
-Package name: whatsnux
-App ID: com.whatsnux.app
+App name: WhatsTux
+Product name: WhatsTux
+Executable: whatstux
+Package name: whatstux
+App ID: com.whatstux.app
 ```
 
 ## Stack
@@ -79,7 +79,7 @@ No broad permission auto-approval.
 
 ## Calls Rule
 
-Whatsnux can support calls only when WhatsApp Web exposes call controls for the linked account.
+WhatsTux can support calls only when WhatsApp Web exposes call controls for the linked account.
 
 Implementation must:
 

@@ -1,11 +1,11 @@
 {
-  "name": "whatsnux",
-  "productName": "Whatsnux",
+  "name": "whatstux",
+  "productName": "WhatsTux",
   "description": "Unofficial Linux desktop client for WhatsApp Web",
   "version": "0.1.0",
   "author": {
-    "name": "Whatsnux Maintainers",
-    "email": "noreply@whatsnux.local"
+    "name": "WhatsTux Maintainers",
+    "email": "noreply@whatstux.local"
   },
   "license": "MIT",
   "main": "dist/main/app.js",
@@ -31,9 +31,9 @@
     "typescript": "^5.7.0"
   },
   "build": {
-    "appId": "com.whatsnux.app",
-    "productName": "Whatsnux",
-    "executableName": "whatsnux",
+    "appId": "com.whatstux.app",
+    "productName": "WhatsTux",
+    "executableName": "whatstux",
     "directories": {
       "buildResources": "assets",
       "output": "release"
@@ -60,7 +60,7 @@
       "category": "Network;InstantMessaging",
       "icon": "assets/icons",
       "synopsis": "Unofficial Linux desktop client for WhatsApp Web",
-      "description": "Whatsnux is an unofficial Linux desktop client that uses WhatsApp Web. It provides native Linux desktop features including tray, notifications, calls, and media permissions."
+      "description": "WhatsTux is an unofficial Linux desktop client that uses WhatsApp Web. It provides native Linux desktop features including tray, notifications, calls, and media permissions."
     },
     "deb": {
       "depends": ["libxss1", "libnss3"]

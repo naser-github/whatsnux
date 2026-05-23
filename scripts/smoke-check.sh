@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "=== Whatsnux Smoke Check ==="
+echo "=== WhatsTux Smoke Check ==="
 
 # Check package scripts exist
 echo "[1] Checking package.json scripts..."

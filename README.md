@@ -1,6 +1,6 @@
-# Whatsnux
+# WhatsTux
 
-Whatsnux is an unofficial Linux desktop client for WhatsApp Web.
+WhatsTux is an unofficial Linux desktop client for WhatsApp Web.
 
 It uses the official WhatsApp Web surface at `https://web.whatsapp.com`.
 
@@ -17,7 +17,7 @@ It uses the official WhatsApp Web surface at `https://web.whatsapp.com`.
 Repo-local agent guidance lives at:
 
 ```text
-.agents/skills/whatsnux-project/SKILL.md
+.agents/skills/whatstux-project/SKILL.md
 ```
 
 Use it when working on this repo.

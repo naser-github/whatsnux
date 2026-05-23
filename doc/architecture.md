@@ -1,9 +1,9 @@
 # Architecture
-## Project: Whatsnux
+## Project: WhatsTux
 
 ### 1. Goal
 
-Define the first implementation shape for Whatsnux.
+Define the first implementation shape for WhatsTux.
 
 The app must stay simple: Electron shell, official WhatsApp Web, safe preload, native Linux desktop integration.
 
@@ -181,7 +181,7 @@ Responsibilities:
 
 Important:
 
-Whatsnux can only support calls when WhatsApp Web exposes call controls for the linked account.
+WhatsTux can only support calls when WhatsApp Web exposes call controls for the linked account.
 
 ### 10. Settings
 
@@ -214,15 +214,15 @@ Targets:
 Package identity:
 
 ```text
-name: whatsnux
-productName: Whatsnux
-appId: com.whatsnux.app
-executable: whatsnux
+name: whatstux
+productName: WhatsTux
+appId: com.whatstux.app
+executable: whatstux
 ```
 
 Branding rules:
 
-- Use original Whatsnux icons.
+- Use original WhatsTux icons.
 - Do not use the official WhatsApp logo as the app icon.
 - Package metadata must say this is an unofficial client for WhatsApp Web.
 

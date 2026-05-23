@@ -29,7 +29,7 @@ function rebuildTrayMenu(): void {
 
   const contextMenu = Menu.buildFromTemplate([
     {
-      label: 'Show Whatsnux',
+      label: 'Show WhatsTux',
       click: () => showMainWindow(),
     },
     { type: 'separator' },

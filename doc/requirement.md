@@ -1,9 +1,9 @@
 # Product Requirements Document
-## Project: Whatsnux
+## Project: WhatsTux
 
 ### 1. Goal
 
-Build Whatsnux, a polished Linux desktop client for WhatsApp with the same daily-use experience expected from WhatsApp for Windows:
+Build WhatsTux, a polished Linux desktop client for WhatsApp with the same daily-use experience expected from WhatsApp for Windows:
 
 - Chat, media, voice notes, file sharing, reactions, communities, channels, status, search, archived chats, pinned chats, starred messages, and settings.
 - Voice calls, video calls, screen sharing, incoming call alerts, and call controls when WhatsApp Web exposes those features for the linked account.
@@ -22,18 +22,18 @@ Because Meta controls WhatsApp Web feature rollout, exact parity with WhatsApp f
 
 | Item | Value |
 | --- | --- |
-| App name | Whatsnux |
-| Product name | Whatsnux |
-| Executable name | `whatsnux` |
-| Package name | `whatsnux` |
-| App ID | `com.whatsnux.app` |
+| App name | WhatsTux |
+| Product name | WhatsTux |
+| Executable name | `whatstux` |
+| Package name | `whatstux` |
+| App ID | `com.whatstux.app` |
 
 Branding rules:
 
-- Use original Whatsnux app icon and visual identity.
+- Use original WhatsTux app icon and visual identity.
 - Do not use the official WhatsApp logo as the app icon.
-- Do not present Whatsnux as an official Meta or WhatsApp product.
-- Add a short disclaimer in app metadata and release notes: Whatsnux is an unofficial Linux desktop client that uses WhatsApp Web.
+- Do not present WhatsTux as an official Meta or WhatsApp product.
+- Add a short disclaimer in app metadata and release notes: WhatsTux is an unofficial Linux desktop client that uses WhatsApp Web.
 
 ### 4. Product Scope
 

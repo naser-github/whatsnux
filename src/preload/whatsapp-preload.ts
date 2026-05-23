@@ -4,7 +4,7 @@ import { contextBridge, ipcRenderer } from 'electron';
 // No Node.js APIs beyond contextBridge are exposed to the renderer.
 // Only specific IPC methods are whitelisted.
 
-contextBridge.exposeInMainWorld('__whatsnux', {
+contextBridge.exposeInMainWorld('__whatstux', {
   // Notifications
   showNotification: (title: string, body: string) => {
     ipcRenderer.send('show-notification', { title, body });

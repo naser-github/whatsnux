@@ -1,9 +1,9 @@
 # Test Plan
-## Project: Whatsnux
+## Project: WhatsTux
 
 ### 1. Goal
 
-Verify that Whatsnux works as a daily Linux desktop client and does not break security, login, calls, or desktop behavior.
+Verify that WhatsTux works as a daily Linux desktop client and does not break security, login, calls, or desktop behavior.
 
 ### 2. Test Environments
 
@@ -125,9 +125,9 @@ Required tests:
 - `.rpm` uninstalls cleanly.
 - AppImage launches without install.
 - App icon appears.
-- App icon is original Whatsnux branding, not the official WhatsApp logo.
+- App icon is original WhatsTux branding, not the official WhatsApp logo.
 - Desktop entry works.
-- Executable name is `whatsnux`.
+- Executable name is `whatstux`.
 
 Pass condition:
 

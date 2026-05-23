@@ -1,6 +1,6 @@
 # Agent Plan
 
-## Project: Whatsnux
+## Project: WhatsTux
 
 ### 1. Goal
 

@@ -33,9 +33,9 @@ export function setupCallDetection(mainWindow: Electron.BrowserWindow): void {
 
     mainWindow.webContents.executeJavaScript(`
       (function() {
-        var noticeId = 'whatsnux-call-fallback';
-        var overlayId = 'whatsnux-call-fallback-overlay';
-        var promptDismissedKey = 'whatsnux-call-beta-prompt-dismissed-session';
+        var noticeId = 'whatstux-call-fallback';
+        var overlayId = 'whatstux-call-fallback-overlay';
+        var promptDismissedKey = 'whatstux-call-beta-prompt-dismissed-session';
         const hasCallButton = document.querySelector('[data-testid="call-video"], [data-testid="call-audio"]') !== null;
         const hasVideoButton = document.querySelector('[data-testid="call-video"]') !== null;
         const hasVoiceButton = document.querySelector('[data-testid="call-audio"]') !== null;
@@ -217,11 +217,11 @@ export function setupCallDetection(mainWindow: Electron.BrowserWindow): void {
           ].join(';'));
 
           var title = document.createElement('div');
-          title.textContent = 'Enable calling in Whatsnux';
+          title.textContent = 'Enable calling in WhatsTux';
           title.setAttribute('style', 'font-weight: 800; font-size: 22px; margin-bottom: 10px;');
 
           var body = document.createElement('div');
-          body.textContent = 'Calls need WhatsApp Web/Desktop beta. Click below and Whatsnux will open Settings > Help and feedback > Join the beta for you. If the option is missing, this account is not eligible yet.';
+          body.textContent = 'Calls need WhatsApp Web/Desktop beta. Click below and WhatsTux will open Settings > Help and feedback > Join the beta for you. If the option is missing, this account is not eligible yet.';
 
           var progress = document.createElement('div');
           progress.setAttribute('style', [
@@ -243,7 +243,7 @@ export function setupCallDetection(mainWindow: Electron.BrowserWindow): void {
             'border: 3px solid rgba(255,255,255,.25)',
             'border-top-color: #00a884',
             'border-radius: 50%',
-            'animation: whatsnux-spin .8s linear infinite'
+            'animation: whatstux-spin .8s linear infinite'
           ].join(';'));
 
           var progressText = document.createElement('div');
@@ -251,10 +251,10 @@ export function setupCallDetection(mainWindow: Electron.BrowserWindow): void {
           progress.appendChild(spinner);
           progress.appendChild(progressText);
 
-          if (!document.getElementById('whatsnux-spin-style')) {
+          if (!document.getElementById('whatstux-spin-style')) {
             var spinStyle = document.createElement('style');
-            spinStyle.id = 'whatsnux-spin-style';
-            spinStyle.textContent = '@keyframes whatsnux-spin { to { transform: rotate(360deg); } }';
+            spinStyle.id = 'whatstux-spin-style';
+            spinStyle.textContent = '@keyframes whatstux-spin { to { transform: rotate(360deg); } }';
             document.head.appendChild(spinStyle);
           }
 
@@ -284,7 +284,7 @@ export function setupCallDetection(mainWindow: Electron.BrowserWindow): void {
             dismissButton.disabled = true;
             dismissButton.setAttribute('style', dismissButton.getAttribute('style') + '; opacity: .45; cursor: not-allowed;');
             progress.setAttribute('style', progress.getAttribute('style').replace('display: none', 'display: flex'));
-            body.textContent = 'Please wait. Whatsnux is opening Settings > Help and feedback > Join the beta.';
+            body.textContent = 'Please wait. WhatsTux is opening Settings > Help and feedback > Join the beta.';
             progressText.textContent = 'Joining beta...';
             enableBetaFast(body);
           });
