@@ -2,6 +2,7 @@ import { Tray, Menu, app, nativeImage } from 'electron';
 import path from 'path';
 import { APP_NAME } from '../shared/constants';
 import { showMainWindow, isCloseToTray, setCloseToTray, quitApplication } from './window';
+import { updateSettings } from './settings';
 
 let tray: Tray | null = null;
 
@@ -38,7 +39,9 @@ function rebuildTrayMenu(): void {
       type: 'checkbox',
       checked: closeToTray,
       click: () => {
-        setCloseToTray(!closeToTray);
+        const nextCloseToTray = !closeToTray;
+        setCloseToTray(nextCloseToTray);
+        updateSettings({ closeToTray: nextCloseToTray });
         rebuildTrayMenu();
       },
     },

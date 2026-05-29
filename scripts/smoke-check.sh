@@ -113,5 +113,41 @@ if [ "$violations" -gt 0 ]; then
 fi
 echo "PASS"
 
+# Regression checks for settings-backed desktop behavior
+echo "[7] Desktop behavior regression checks..."
+violations=0
+
+enable_features_count=$(grep -c "appendSwitch('enable-features'" src/main/media-flags.ts || true)
+if [ "$enable_features_count" -ne 1 ]; then
+  echo "FAIL: enable-features should be appended once with a combined feature list"
+  violations=$((violations + 1))
+fi
+
+if ! grep -q "WebRTCPipeWireCapturer,UseOzonePlatform" src/main/media-flags.ts; then
+  echo "FAIL: media feature list is missing PipeWire or Ozone support"
+  violations=$((violations + 1))
+fi
+
+if ! grep -q "updateSettings({ closeToTray" src/main/tray.ts; then
+  echo "FAIL: tray close-to-tray toggle is not persisted"
+  violations=$((violations + 1))
+fi
+
+if ! grep -q "nativeNotifications" src/main/notifications.ts; then
+  echo "FAIL: notification handler does not respect nativeNotifications"
+  violations=$((violations + 1))
+fi
+
+if ! grep -q "normalizeSettings" src/main/settings.ts; then
+  echo "FAIL: settings input is not normalized before saving"
+  violations=$((violations + 1))
+fi
+
+if [ "$violations" -gt 0 ]; then
+  echo "FAIL: $violations desktop behavior regression(s) found"
+  exit 1
+fi
+echo "PASS"
+
 echo ""
 echo "=== All smoke checks passed ==="

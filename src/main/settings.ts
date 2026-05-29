@@ -21,12 +21,37 @@ function settingsFilePath(): string {
   return path.join(app.getPath('userData'), SETTINGS_FILE);
 }
 
+function isTheme(value: unknown): value is AppSettings['theme'] {
+  return value === 'system' || value === 'light' || value === 'dark';
+}
+
+function booleanOrDefault(value: unknown, fallback: boolean): boolean {
+  return typeof value === 'boolean' ? value : fallback;
+}
+
+function normalizeSettings(value: unknown): AppSettings {
+  const input = typeof value === 'object' && value !== null ? value as Partial<AppSettings> : {};
+
+  return {
+    closeToTray: booleanOrDefault(input.closeToTray, DEFAULT_SETTINGS.closeToTray),
+    startMinimized: booleanOrDefault(input.startMinimized, DEFAULT_SETTINGS.startMinimized),
+    theme: isTheme(input.theme) ? input.theme : DEFAULT_SETTINGS.theme,
+    nativeNotifications: booleanOrDefault(input.nativeNotifications, DEFAULT_SETTINGS.nativeNotifications),
+    hardwareAcceleration: booleanOrDefault(input.hardwareAcceleration, DEFAULT_SETTINGS.hardwareAcceleration),
+    callCompatibilityMode: booleanOrDefault(
+      input.callCompatibilityMode,
+      DEFAULT_SETTINGS.callCompatibilityMode
+    ),
+    launchOnLogin: booleanOrDefault(input.launchOnLogin, DEFAULT_SETTINGS.launchOnLogin),
+  };
+}
+
 export function loadSettings(): AppSettings {
   try {
     const filePath = settingsFilePath();
     if (fs.existsSync(filePath)) {
       const data = fs.readFileSync(filePath, 'utf-8');
-      currentSettings = { ...DEFAULT_SETTINGS, ...JSON.parse(data) };
+      currentSettings = normalizeSettings(JSON.parse(data));
     }
   } catch {
     currentSettings = { ...DEFAULT_SETTINGS };
@@ -35,7 +60,7 @@ export function loadSettings(): AppSettings {
 }
 
 export function saveSettings(settings: AppSettings): AppSettings {
-  currentSettings = { ...settings };
+  currentSettings = normalizeSettings(settings);
   try {
     const filePath = settingsFilePath();
     const dir = path.dirname(filePath);
@@ -47,6 +72,12 @@ export function saveSettings(settings: AppSettings): AppSettings {
     // Silently fail — settings will be in-memory for this session
   }
   return currentSettings;
+}
+
+export function updateSettings(settings: Partial<AppSettings>): AppSettings {
+  const nextSettings = saveSettings({ ...currentSettings, ...settings });
+  applyRuntimeSettings(nextSettings);
+  return nextSettings;
 }
 
 export function getSettings(): AppSettings {
@@ -64,11 +95,8 @@ export function setupSettingsIpc(): void {
     return getSettings();
   });
 
-  ipcMain.handle('set-settings', (_event, settings: AppSettings) => {
-    saveSettings(settings);
-    applyRuntimeSettings(settings);
-
-    return getSettings();
+  ipcMain.handle('set-settings', (_event, settings: unknown) => {
+    return updateSettings(normalizeSettings(settings));
   });
 
   ipcMain.handle('clear-cache', async () => {

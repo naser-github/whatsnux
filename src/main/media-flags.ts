@@ -1,11 +1,8 @@
 import { app } from 'electron';
 
 export function setupMediaFlags(hardwareAcceleration: boolean = true): void {
-  // PipeWire support for screen sharing on Wayland
-  app.commandLine.appendSwitch('enable-features', 'WebRTCPipeWireCapturer');
-
-  // Wayland support via Ozone
-  app.commandLine.appendSwitch('enable-features', 'UseOzonePlatform');
+  // PipeWire screen sharing on Wayland and Ozone platform support.
+  app.commandLine.appendSwitch('enable-features', 'WebRTCPipeWireCapturer,UseOzonePlatform');
   app.commandLine.appendSwitch('ozone-platform-hint', 'auto');
 
   // Accelerated video decode
