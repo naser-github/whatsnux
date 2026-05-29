@@ -33,7 +33,6 @@ app.whenReady().then(() => {
   setupNotifications();
   setupDownloads();
   setupDownloadIpc();
-  setupShortcuts();
   setupSettingsIpc();
 
   // Create application menu
@@ -73,6 +72,7 @@ app.whenReady().then(() => {
 
   // Set up navigation controls
   setupNavigation(mainWindow);
+  setupShortcuts(mainWindow);
   setupCallDetection(mainWindow);
 
   if (settings.callCompatibilityMode) {

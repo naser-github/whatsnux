@@ -143,6 +143,26 @@ if ! grep -q "normalizeSettings" src/main/settings.ts; then
   violations=$((violations + 1))
 fi
 
+if grep -q "startsWith(WHATSAPP" src/main/navigation.ts src/main/permissions.ts; then
+  echo "FAIL: WhatsApp origin checks must parse URLs and compare exact origins"
+  violations=$((violations + 1))
+fi
+
+if grep -q "globalShortcut" src/main/shortcuts.ts; then
+  echo "FAIL: app shortcuts must not be registered as global OS shortcuts"
+  violations=$((violations + 1))
+fi
+
+if grep -q "shell.openPath(filePath)" src/main/downloads.ts; then
+  echo "FAIL: completed downloads must not auto-open files"
+  violations=$((violations + 1))
+fi
+
+if grep -Eq "showNotification|openDownloadsFolder|getSettings" src/preload/whatsapp-preload.ts; then
+  echo "FAIL: WhatsApp Web preload must not expose broad WhatsTux APIs"
+  violations=$((violations + 1))
+fi
+
 if [ "$violations" -gt 0 ]; then
   echo "FAIL: $violations desktop behavior regression(s) found"
   exit 1

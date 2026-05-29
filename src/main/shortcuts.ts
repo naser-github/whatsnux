@@ -1,46 +1,42 @@
-import { app, globalShortcut, BrowserWindow } from 'electron';
-import { getMainWindow } from './window';
+import { app, BrowserWindow } from 'electron';
 
-export function setupShortcuts(): void {
-  // Ctrl/Cmd+Q — Quit app
-  globalShortcut.register('CommandOrControl+Q', () => {
-    app.quit();
-  });
-
-  // Ctrl/Cmd+R — Reload WhatsApp Web
-  globalShortcut.register('CommandOrControl+R', () => {
-    const win = getMainWindow();
-    if (win) {
-      win.webContents.reload();
+export function setupShortcuts(mainWindow: BrowserWindow): void {
+  mainWindow.webContents.on('before-input-event', (event, input) => {
+    if (input.type !== 'keyDown' || (!input.control && !input.meta)) {
+      return;
     }
-  });
 
-  // Ctrl/Cmd+= and Ctrl/Cmd+- — Zoom in/out
-  globalShortcut.register('CommandOrControl+=', () => {
-    const win = getMainWindow();
-    if (win) {
-      const level = win.webContents.getZoomLevel();
-      win.webContents.setZoomLevel(level + 0.5);
+    const key = input.key.toLowerCase();
+
+    if (key === 'q') {
+      event.preventDefault();
+      app.quit();
+      return;
     }
-  });
 
-  globalShortcut.register('CommandOrControl+-', () => {
-    const win = getMainWindow();
-    if (win) {
-      const level = win.webContents.getZoomLevel();
-      win.webContents.setZoomLevel(level - 0.5);
+    if (key === 'r') {
+      event.preventDefault();
+      mainWindow.webContents.reload();
+      return;
     }
-  });
 
-  // Ctrl/Cmd+0 — Reset zoom
-  globalShortcut.register('CommandOrControl+0', () => {
-    const win = getMainWindow();
-    if (win) {
-      win.webContents.setZoomLevel(0);
+    if (key === '=' || key === '+') {
+      event.preventDefault();
+      mainWindow.webContents.setZoomLevel(mainWindow.webContents.getZoomLevel() + 0.5);
+      return;
+    }
+
+    if (key === '-') {
+      event.preventDefault();
+      mainWindow.webContents.setZoomLevel(mainWindow.webContents.getZoomLevel() - 0.5);
+      return;
+    }
+
+    if (key === '0') {
+      event.preventDefault();
+      mainWindow.webContents.setZoomLevel(0);
     }
   });
 }
 
-export function destroyShortcuts(): void {
-  globalShortcut.unregisterAll();
-}
+export function destroyShortcuts(): void {}

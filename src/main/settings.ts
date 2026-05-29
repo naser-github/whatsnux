@@ -1,8 +1,8 @@
-import { app, ipcMain } from 'electron';
+import { app, ipcMain, session } from 'electron';
 import * as fs from 'fs';
 import * as path from 'path';
 import { AppSettings } from '../shared/types';
-import { setCloseToTray, setCompatibilityMode } from './window';
+import { getMainWindow, setCloseToTray, setCompatibilityMode } from './window';
 import { SETTINGS_FILE, SESSION_PARTITION, WHATSAPP_WEB_URL } from '../shared/constants';
 
 const DEFAULT_SETTINGS: AppSettings = {
@@ -100,22 +100,18 @@ export function setupSettingsIpc(): void {
   });
 
   ipcMain.handle('clear-cache', async () => {
-    const { session } = require('electron');
     const s = session.fromPartition(SESSION_PARTITION);
     await s.clearCache();
     return true;
   });
 
   ipcMain.handle('reset-app-data', async () => {
-    const { session } = require('electron');
     const s = session.fromPartition(SESSION_PARTITION);
     await s.clearCache();
     await s.clearStorageData();
-    // Reset settings to defaults
-    saveSettings(DEFAULT_SETTINGS);
+    updateSettings(DEFAULT_SETTINGS);
 
     // Reload to show WhatsApp QR again
-    const { getMainWindow } = require('./window');
     const win = getMainWindow();
     if (win) {
       win.loadURL(WHATSAPP_WEB_URL);

@@ -7,10 +7,17 @@ interface NotificationPayload {
   body: string;
 }
 
+const MAX_NOTIFICATION_TITLE_LENGTH = 120;
+const MAX_NOTIFICATION_BODY_LENGTH = 500;
+
 function isNotificationPayload(value: unknown): value is NotificationPayload {
   if (typeof value !== 'object' || value === null) return false;
   const payload = value as Partial<NotificationPayload>;
   return typeof payload.title === 'string' && typeof payload.body === 'string';
+}
+
+function limitNotificationText(value: string, maxLength: number): string {
+  return value.trim().slice(0, maxLength);
 }
 
 export function setupNotifications(): void {
@@ -21,8 +28,8 @@ export function setupNotifications(): void {
     }
 
     const notification = new Notification({
-      title: payload.title,
-      body: payload.body,
+      title: limitNotificationText(payload.title, MAX_NOTIFICATION_TITLE_LENGTH),
+      body: limitNotificationText(payload.body, MAX_NOTIFICATION_BODY_LENGTH),
       silent: false,
     });
 
